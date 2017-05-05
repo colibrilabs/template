@@ -1,0 +1,22 @@
+{
+  "name": "colibriphp/template",
+  "description": "Template Library",
+  "keywords": ["php template", "template"],
+  "authors": [
+    {
+      "name": "Ivan Hontarenko",
+      "email": "stewie.dev@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "type": "library",
+  "require": {
+    "php": ">=5.6",
+    "colibriphp/collection": "~0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Colibri\\Template\\": "src/"
+    }
+  }
+}
