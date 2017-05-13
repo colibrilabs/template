@@ -70,7 +70,9 @@ class Compiler
     
     try {
       ob_start();
-      extract($this->template->data()->toArray());
+      
+      $collectionIterator = $this->template->data()->getIterator();
+      extract($collectionIterator->getArrayCopy());
       
       if (!$this->exists()) {
         throw new TemplateException('Template compiler cannot find layout file :file', ['file' => $this->debugFilename()]);
