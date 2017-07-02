@@ -2,6 +2,7 @@
 
 namespace Colibri\Template;
 
+use Colibri\Collection\ArrayCollection;
 use Colibri\Template\Core\Collection\DataStorage;
 use Colibri\Template\Core\Compiler;
 use Colibri\Template\Core\ExtensionInterface;
@@ -31,9 +32,9 @@ interface TemplateInterface
   public function batch(array $data = []);
   
   /**
-   * @return DataStorage
+   * @return ArrayCollection
    */
-  public function data();
+  public function getVariables();
   
   /**
    * @param string $path
@@ -94,6 +95,15 @@ interface TemplateInterface
    * @return string|Directory
    */
   public function getDirectory($name = null);
-  
-  
+
+  /**
+   * @return ArrayCollection
+   */
+  public function getLayouts();
+
+  /**
+   * @return ArrayCollection
+   */
+  public function getSections();
+
 }

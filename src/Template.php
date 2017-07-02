@@ -6,6 +6,7 @@ use Colibri\Collection\ArrayCollection;
 use Colibri\Template\Core\Compiler;
 use Colibri\Template\Core\Directory;
 use Colibri\Template\Core\ExtensionInterface;
+use Colibri\Template\Core\File;
 use Colibri\Template\Extensions\ExtensionDefault;
 
 /**
@@ -18,7 +19,7 @@ class Template implements TemplateInterface
   /**
    * @var ArrayCollection
    */
-  protected $data = null;
+  protected $variables = null;
   
   /**
    * @var Directory
@@ -36,10 +37,15 @@ class Template implements TemplateInterface
   protected $functions = null;
   
   /**
-   * @var null
+   * @var ArrayCollection
    */
-  protected $layout = null;
-  
+  protected $layouts = null;
+
+  /**
+   * @var ArrayCollection
+   */
+  protected $sections;
+
   /**
    * Template constructor.
    * @param string $directory
@@ -48,9 +54,12 @@ class Template implements TemplateInterface
   public function __construct($directory, array $data = [])
   {
     $this->directory = new Directory($directory);
-    $this->data = new ArrayCollection($data);
-    $this->directories = new ArrayCollection();
-    $this->functions = new ArrayCollection();
+    $this->variables = new ArrayCollection($data);
+    $this->sections = new ArrayCollection();
+    
+    $this->directories = new ArrayCollection([], Directory::class);
+    $this->functions = new ArrayCollection([], null);
+    $this->layouts = new ArrayCollection([], null);
     
     $this->registerExtension(new ExtensionDefault());
   }
@@ -91,7 +100,7 @@ class Template implements TemplateInterface
    */
   public function set($key, $data)
   {
-    $this->data->set($key, $data);
+    $this->variables->set($key, $data);
     
     return $this;
   }
@@ -101,15 +110,15 @@ class Template implements TemplateInterface
    */
   public function batch(array $data = [])
   {
-    $this->data->batch($data);
+    $this->variables->batch($data);
   }
   
   /**
    * @return ArrayCollection
    */
-  public function data()
+  public function getVariables()
   {
-    return $this->data;
+    return $this->variables;
   }
   
   /**
@@ -119,9 +128,9 @@ class Template implements TemplateInterface
    */
   public function fetch($path, array $data = [])
   {
-    $this->data->batch($data);
+    $this->variables->batch($data);
     
-    return $this->render($path);
+    return $this->compiler($path)->render();
   }
   
   /**
@@ -130,7 +139,18 @@ class Template implements TemplateInterface
    */
   public function render($path)
   {
-    return $this->compiler($path)->render();
+    $content = $this->compiler($path)->render();
+
+    $layouts = $this->getLayouts();
+    if ($layouts->count() > 0) {
+      $layouts->each(function($index, $layout) use ($layouts, &$content) {
+        $layouts->remove($index);
+        $this->set('content', $content);
+        $content = $this->compiler($layout)->render();
+      });
+    }
+
+    return $content;
   }
   
   /**
@@ -205,6 +225,32 @@ class Template implements TemplateInterface
   {
     return null === $name ? $this->directory->getPath() : $this->directories->get($name);
   }
-  
+
+  /**
+   * @return ArrayCollection
+   */
+  public function getLayouts()
+  {
+    return $this->layouts;
+  }
+
+  /**
+   * @return ArrayCollection
+   */
+  public function getSections()
+  {
+    return $this->sections;
+  }
+
+  /**
+   * @param $name
+   * @return $this
+   */
+  public function addLayout($name)
+  {
+    $this->layouts->push($name);
+
+    return $this;
+  }
   
 }

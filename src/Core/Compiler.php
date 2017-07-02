@@ -19,24 +19,9 @@ class Compiler
   protected $template = null;
   
   /**
-   * @var string|null
-   */
-  protected $layoutName = null;
-  
-  /**
-   * @var array
-   */
-  protected $layoutData = [];
-  
-  /**
    * @var File
    */
   protected $renderable = null;
-  
-  /**
-   * @var ArrayCollection
-   */
-  protected $sections = null;
   
   /**
    * Compiler constructor.
@@ -47,7 +32,6 @@ class Compiler
   {
     $this->template = $template;
     $this->renderable = new File($path, $template);
-    $this->sections = new ArrayCollection();
   }
   
   /**
@@ -71,25 +55,18 @@ class Compiler
     try {
       ob_start();
       
-      $collectionIterator = $this->template->data()->getIterator();
+      $collectionIterator = $this->template->getVariables()->getIterator();
       extract($collectionIterator->getArrayCopy());
       
       if (!$this->exists()) {
-        throw new TemplateException('Template compiler cannot find layout file :file', ['file' => $this->debugFilename()]);
+        throw new TemplateException(sprintf(
+          'Template compiler cannot find layout file [%s]', $this->debugFilename()));
       }
       
       include $this->path();
       
       $content = ob_get_clean();
-      
-      if ($this->layoutName) {
-        $layout = $this->template->compiler($this->layoutName);
-        $layout->copySectionFrom($this);
-        $this->template->data()->batch($this->layoutData);
-        $this->template->set('content', $content);
-        $content = $layout->render();
-      }
-      
+
     } catch (\Exception $e) {
       ob_get_clean();
       throw $e;
@@ -123,22 +100,11 @@ class Compiler
   }
   
   /**
-   * @param Compiler $compiler
-   * @return $this
-   */
-  protected function copySectionFrom(Compiler $compiler)
-  {
-    $this->getSections()->batch($compiler->getSections()->toArray());
-    
-    return $this;
-  }
-  
-  /**
    * @return ArrayCollection
    */
   protected function getSections()
   {
-    return $this->sections;
+    return $this->template->getSections();
   }
   
   /**
@@ -158,9 +124,9 @@ class Compiler
    */
   protected function layout($name, array $data = [])
   {
-    $this->layoutName = $name;
-    $this->layoutData = $data;
-    
+    $this->template->getLayouts()->append($name);
+    $this->template->getVariables()->batch($data);
+
     return $this;
   }
   
@@ -175,7 +141,7 @@ class Compiler
       throw new TemplateException('Section name "content" is reserved');
     }
     
-    $this->sections->set($name, '');
+    $this->template->getSections()->set($name, '');
     ob_start();
     
     return $this;
@@ -187,12 +153,12 @@ class Compiler
    */
   protected function stop()
   {
-    if (!$this->sections->exists()) {
+    if (!$this->template->getSections()->exists()) {
       throw new TemplateException('You should start section before stopping');
     }
     
-    $keys = $this->sections->keys();
-    $this->sections->set($keys[count($keys) - 1], ob_get_clean());
+    $keys = $this->template->getSections()->keys();
+    $this->template->getSections()->set($keys[count($keys) - 1], ob_get_clean());
     
     return $this;
   }
@@ -204,7 +170,8 @@ class Compiler
    */
   protected function section($name, $default = null)
   {
-    return $this->sections->has($name) ? $this->sections->get($name) : $default;
+    return $this->template->getSections()->has($name)
+      ? $this->template->getSections()->get($name) : $default;
   }
   
   /**
@@ -214,7 +181,7 @@ class Compiler
    */
   protected function setSection($name, $content)
   {
-    $this->sections->set($name, $content);
+    $this->template->getSections()->set($name, $content);
     
     return $this;
   }
@@ -225,7 +192,7 @@ class Compiler
    */
   protected function hasSection($name)
   {
-    return $this->sections->has($name);
+    return $this->template->getSections()->has($name);
   }
   
   

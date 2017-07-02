@@ -64,14 +64,13 @@ final class NullTemplate implements TemplateInterface
   /**
    * @return ArrayCollection
    */
-  public function data()
+  public function getVariables()
   {
     $this->createException();
   }
   
   /**
-   * @param string $path
-   * @return string
+   * @inheritdoc
    */
   public function render($path)
   {

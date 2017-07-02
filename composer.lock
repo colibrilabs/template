@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8557777ac8b43c8094b0c49a77b5635e",
-    "content-hash": "8d93ebad9b2d36aa415cfa85cda010c1",
+    "hash": "ed9e6f57e953c085c22118ad5205b246",
+    "content-hash": "016653dea170616e62e1acf0ff800e22",
     "packages": [
         {
-            "name": "colibriphp/collection",
-            "version": "v0.1.0",
+            "name": "colibrilabs/collection",
+            "version": "0.2.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/colibriphp/collection.git",
-                "reference": "ed56fcf2de8101b4151ae3972dfe7cda404948f4"
+                "url": "https://github.com/colibrilabs/collection.git",
+                "reference": "85d61b52f9070da694d264b03a565a17b4347e0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colibriphp/collection/zipball/ed56fcf2de8101b4151ae3972dfe7cda404948f4",
-                "reference": "ed56fcf2de8101b4151ae3972dfe7cda404948f4",
+                "url": "https://api.github.com/repos/colibrilabs/collection/zipball/85d61b52f9070da694d264b03a565a17b4347e0b",
+                "reference": "85d61b52f9070da694d264b03a565a17b4347e0b",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "collection",
                 "php collection"
             ],
-            "time": "2017-05-05 12:09:42"
+            "time": "2017-06-21 15:36:43"
         }
     ],
     "packages-dev": [],

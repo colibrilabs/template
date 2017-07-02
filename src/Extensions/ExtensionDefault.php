@@ -11,9 +11,10 @@ use Colibri\Template\Template;
  */
 class ExtensionDefault implements ExtensionInterface
 {
-  
+
   /**
    * @param Template $template
+   * @return void
    */
   public function register(Template $template)
   {
