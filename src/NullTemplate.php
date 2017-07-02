@@ -155,4 +155,14 @@ final class NullTemplate implements TemplateInterface
     $this->createException();
   }
   
+  public function getLayouts()
+  {
+    $this->createException();
+  }
+
+  public function getSections()
+  {
+    $this->createException();
+  }
+  
 }
