@@ -1,5 +1,5 @@
 {
-  "name": "colibrilabs/template",
+  "name": "subapp/template",
   "description": "Template Library",
   "keywords": ["php template", "template"],
   "authors": [
@@ -12,7 +12,7 @@
   "type": "library",
   "require": {
     "php": ">=5.6",
-    "colibrilabs/collection": "~0.1"
+    "subapp/collection": "~0.1"
   },
   "autoload": {
     "psr-4": {

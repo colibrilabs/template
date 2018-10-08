@@ -8,16 +8,16 @@
     "content-hash": "016653dea170616e62e1acf0ff800e22",
     "packages": [
         {
-            "name": "colibrilabs/collection",
+            "name": "subapp/collection",
             "version": "0.2.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/colibrilabs/collection.git",
+                "url": "https://github.com/subapp/collection.git",
                 "reference": "85d61b52f9070da694d264b03a565a17b4347e0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colibrilabs/collection/zipball/85d61b52f9070da694d264b03a565a17b4347e0b",
+                "url": "https://api.github.com/repos/subapp/collection/zipball/85d61b52f9070da694d264b03a565a17b4347e0b",
                 "reference": "85d61b52f9070da694d264b03a565a17b4347e0b",
                 "shasum": ""
             },
