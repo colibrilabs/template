@@ -1,12 +1,12 @@
 <?php
 
-namespace Colibri\Template\Core;
+namespace Subapp\Template\Core;
 
-use Colibri\Template\TemplateException;
+use Subapp\Template\TemplateException;
 
 /**
  * Class Directory
- * @package Colibri\Template\Core
+ * @package Subapp\Template\Core
  */
 class Directory
 {

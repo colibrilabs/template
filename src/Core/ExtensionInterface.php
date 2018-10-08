@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\Template\Core;
+namespace Subapp\Template\Core;
 
-use Colibri\Template\Template;
+use Subapp\Template\Template;
 
 /**
  * Interface ExtensionInterface
  *
- * @package Colibri\Template\Core
+ * @package Subapp\Template\Core
  */
 interface ExtensionInterface
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Colibri\Template\Core;
+namespace Subapp\Template\Core;
 
-use Colibri\Collection\ArrayCollection;
-use Colibri\Template\Template;
-use Colibri\Template\TemplateException;
+use Subapp\Collection\ArrayCollection;
+use Subapp\Template\Template;
+use Subapp\Template\TemplateException;
 
 /**
  * Class Compiler
- * @package Colibri\Template\Core
+ * @package Subapp\Template\Core
  */
 class Compiler
 {

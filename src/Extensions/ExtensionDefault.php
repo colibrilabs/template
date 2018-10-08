@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\Template\Extensions;
+namespace Subapp\Template\Extensions;
 
-use Colibri\Template\Core\ExtensionInterface;
-use Colibri\Template\Template;
+use Subapp\Template\Core\ExtensionInterface;
+use Subapp\Template\Template;
 
 /**
  * Class ExtensionDefault
- * @package Colibri\Template\Extensions
+ * @package Subapp\Template\Extensions
  */
 class ExtensionDefault implements ExtensionInterface
 {

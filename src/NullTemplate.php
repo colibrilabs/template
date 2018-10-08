@@ -1,15 +1,15 @@
 <?php
 
-namespace Colibri\Template;
+namespace Subapp\Template;
 
-use Colibri\Collection\ArrayCollection;
-use Colibri\Template\Core\Compiler;
-use Colibri\Template\Core\Directory;
-use Colibri\Template\Core\ExtensionInterface;
+use Subapp\Collection\ArrayCollection;
+use Subapp\Template\Core\Compiler;
+use Subapp\Template\Core\Directory;
+use Subapp\Template\Core\ExtensionInterface;
 
 /**
  * Class NullTemplate
- * @package Colibri\Template
+ * @package Subapp\Template
  */
 final class NullTemplate implements TemplateInterface
 {

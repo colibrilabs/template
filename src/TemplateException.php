@@ -1,12 +1,12 @@
 <?php
 
-namespace Colibri\Template;
+namespace Subapp\Template;
 
 use Exception;
 
 /**
  * Class TemplateException
- * @package Colibri\Template
+ * @package Subapp\Template
  */
 class TemplateException extends \Exception
 {

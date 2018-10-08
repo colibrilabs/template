@@ -1,17 +1,17 @@
 <?php
 
-namespace Colibri\Template;
+namespace Subapp\Template;
 
-use Colibri\Collection\ArrayCollection;
-use Colibri\Template\Core\Compiler;
-use Colibri\Template\Core\Directory;
-use Colibri\Template\Core\ExtensionInterface;
-use Colibri\Template\Core\File;
-use Colibri\Template\Extensions\ExtensionDefault;
+use Subapp\Collection\ArrayCollection;
+use Subapp\Template\Core\Compiler;
+use Subapp\Template\Core\Directory;
+use Subapp\Template\Core\ExtensionInterface;
+use Subapp\Template\Core\File;
+use Subapp\Template\Extensions\ExtensionDefault;
 
 /**
  * Class Template
- * @package Colibri\Template
+ * @package Subapp\Template
  */
 class Template implements TemplateInterface
 {

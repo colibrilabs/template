@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\Template\Core;
+namespace Subapp\Template\Core;
 
-use Colibri\Template\Template;
-use Colibri\Template\TemplateException;
+use Subapp\Template\Template;
+use Subapp\Template\TemplateException;
 
 /**
  * Class File
- * @package Colibri\Template\Core
+ * @package Subapp\Template\Core
  */
 class File
 {
