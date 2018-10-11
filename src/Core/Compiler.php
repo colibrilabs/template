@@ -2,7 +2,7 @@
 
 namespace Subapp\Template\Core;
 
-use Subapp\Collection\ArrayCollection;
+use Subapp\Collection\Collection as ArrayCollection;
 use Subapp\Template\Template;
 use Subapp\Template\TemplateException;
 
