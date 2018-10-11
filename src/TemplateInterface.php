@@ -2,7 +2,7 @@
 
 namespace Subapp\Template;
 
-use Subapp\Collection\ArrayCollection;
+use Subapp\Collection\Collection as ArrayCollection;
 use Subapp\Template\Core\Collection\DataStorage;
 use Subapp\Template\Core\Compiler;
 use Subapp\Template\Core\ExtensionInterface;
