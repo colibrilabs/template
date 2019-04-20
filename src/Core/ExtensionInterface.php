@@ -11,11 +11,11 @@ use Subapp\Template\Template;
  */
 interface ExtensionInterface
 {
-
-  /**
-   * @param Template $template
-   * @return void
-   */
-  public function register(Template $template);
-  
+    
+    /**
+     * @param Template $template
+     * @return void
+     */
+    public function register(Template $template);
+    
 }
